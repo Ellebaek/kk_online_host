@@ -19,11 +19,15 @@ function onConnection(sock) {
 
   /* set up event listener to get message and send it back to all users */
   sock.on('msg', (txt) => io.emit('msg', txt));
+  sock.on('usrname', (txt) => io.emit('usrname', txt));
+  sock.on('usrchips', (obj) => io.emit('usrchips', obj));
 }
 
 server.on('error', (err) => {
   console.error('Server error:', err);
 });
+
+
 /*
 function notifyHandStarts(sock) {
   sock.emit..

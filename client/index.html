@@ -2,27 +2,31 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Online Chat</title>
+    <title>KK Online Host</title>
   </head>
   <body>
     <div class="wrapper">
       <div class="main">
         <ul id="chat"></ul>
       </div>
-      <div class="user-details">
-        <label for="user-name">User:</label>
-        <p id="user-name">Unknown</p>
-      </div>
       <div class="chat-controls">
         <form id="chat-form" action="index.html" method="post">
-          <input type="text" id="chat-input" autocomplete="off"/>
-          <input type="submit" name="post" value="Send"/>
+          <input type="text" id="chat-input" autocomplete="off" disabled=true/>
+          <input type="submit" id="chat-btn" name="post" value="Send" disabled=true/>
         </form>
         <form id="name-form" action="index.html" method="post">
           <input type="text" id="name-input" autocomplete="off"/>
-          <input type="submit" name="name-update" value="Set Name"/>
+          <input type="submit" id="name-btn" name="name-update" value="Set Name"/>
+        </form>
+        <form id="chips-form" action="index.html" method="post">
+          <input type="number" id="chips-input" min="0" disabled=true/>
+          <input type="submit" id="chips-btn" value="Set Chips" disabled=true/>
         </form>
       </div>
+      <div class="user-list">
+        <ul id="users"></ul>
+      </div>
+      <input type="button" id="shuffle-players" value="Shuffle Players"/>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/client.js"></script>
