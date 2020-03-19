@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Online Chat</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main">
+        <ul id="chat"></ul>
+      </div>
+      <div class="user-details">
+        <label for="user-name">User:</label>
+        <p id="user-name">Unknown</p>
+      </div>
+      <div class="chat-controls">
+        <form id="chat-form" action="index.html" method="post">
+          <input type="text" id="chat-input" autocomplete="off"/>
+          <input type="submit" name="post" value="Send"/>
+        </form>
+        <form id="name-form" action="index.html" method="post">
+          <input type="text" id="name-input" autocomplete="off"/>
+          <input type="submit" name="name-update" value="Set Name"/>
+        </form>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/client.js"></script>
+  </body>
+</html>

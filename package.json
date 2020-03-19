@@ -1,0 +1,24 @@
+{
+  "name": "simple_chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ellebaek/simple_chat.git"
+  },
+  "author": "Thomas Ellebæk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ellebaek/simple_chat/issues"
+  },
+  "homepage": "https://github.com/Ellebaek/simple_chat#readme",
+  "dependencies": {
+    "express": "4.17.1",
+    "socket.io": "2.3.0"
+  }
+}
