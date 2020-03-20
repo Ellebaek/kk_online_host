@@ -4,6 +4,7 @@ const user_suffix = '_PLAYER';
 sock.on('msg', onMessage);
 sock.on('usrname', onRegisterUser);
 sock.on('usrchips', onChipsUpdate);
+sock.on('playersshuffle', onPlayersShuffle);
 
 function onMessage(text) {
   var list = document.getElementById('chat');
@@ -25,6 +26,28 @@ function onChipsUpdate(obj) {
   var usr = obj['user'] + user_suffix;
   var el = document.getElementById(usr);
   el.innerHTML = obj['user'] + ' (' + obj['chips'] + ')';
+}
+
+function onPlayersShuffle(text) {
+  var btn = document.getElementById('shuffle-players-btn');
+  btn.disabled = true;
+  var list = document.getElementById('users');
+  var cnodes = list.childNodes;
+  // read child nodes into array
+  var players = [];
+  for (var i = 0; i < cnodes.length; i++){
+    players.push({ id: cnodes[i].id, value: cnodes[i].innerHTML });
+  }
+  // clear list
+  list.innerHTML = '';
+  shuffleArray(players);
+  // rebuild shuffled list
+  for (var i = 0; i < players.length; i++){
+    var el = document.createElement('li');
+    el.id = players[players.length-i-1].id;
+    el.innerHTML = players[players.length-i-1].value;
+    list.appendChild(el);
+  }
 }
 
 var form = document.getElementById('chat-form');
@@ -68,6 +91,16 @@ form.addEventListener('submit', function(e) {
   var chps = document.getElementById('chips-input').value;
   //var value = usr + '(' + input.value + ')';
   sock.emit('usrchips', { user: usr, chips: chps});
+
+  // prevent refresh
+  e.preventDefault();
+});
+
+var btn = document.getElementById('shuffle-players-btn');
+btn.addEventListener('click', function(e) {
+  //document.getElementById('shuffle-players-btn').disabled = true;
+  sock.emit('msg', "Shuffling players, get ready to play!");
+  sock.emit('playersshuffle', "t");
 
   // prevent refresh
   e.preventDefault();

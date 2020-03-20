@@ -15,12 +15,14 @@ const io = socketio(server);
 io.on('connection', onConnection);
 
 function onConnection(sock) {
-  sock.emit('msg', 'Velkommen til chatten!');
+  sock.emit('msg', 'Velkommen til KK Online Host!');
+  sock.emit('msg', 'Once ALL players have joined the game please register by setting your name!');
 
   /* set up event listener to get message and send it back to all users */
   sock.on('msg', (txt) => io.emit('msg', txt));
   sock.on('usrname', (txt) => io.emit('usrname', txt));
   sock.on('usrchips', (obj) => io.emit('usrchips', obj));
+  sock.on('playersshuffle', (txt) => io.emit('playersshuffle', txt));
 }
 
 server.on('error', (err) => {
