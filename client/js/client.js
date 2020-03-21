@@ -28,24 +28,24 @@ function onChipsUpdate(obj) {
   el.innerHTML = obj['user'] + ' (' + obj['chips'] + ')';
 }
 
-function onPlayersShuffle(text) {
+function onPlayersShuffle(players) {
   var btn = document.getElementById('shuffle-players-btn');
   btn.disabled = true;
   var list = document.getElementById('users');
-  var cnodes = list.childNodes;
+  //var cnodes = list.childNodes;
   // read child nodes into array
-  var players = [];
-  for (var i = 0; i < cnodes.length; i++){
-    players.push({ id: cnodes[i].id, value: cnodes[i].innerHTML });
-  }
+  //var players = [];
+  //for (var i = 0; i < cnodes.length; i++){
+  //  players.push({ id: cnodes[i].id, value: cnodes[i].innerHTML });
+  //}
   // clear list
   list.innerHTML = '';
-  shuffleArray(players);
+  // shuffleArray(players);
   // rebuild shuffled list
   for (var i = 0; i < players.length; i++){
     var el = document.createElement('li');
-    el.id = players[players.length-i-1].id;
-    el.innerHTML = players[players.length-i-1].value;
+    el.id = players[i] + user_suffix;
+    el.innerHTML = players[i];
     list.appendChild(el);
   }
 }
@@ -103,5 +103,5 @@ btn.addEventListener('click', function(e) {
   sock.emit('playersshuffle', "t");
 
   // prevent refresh
-  e.preventDefault();
+  //e.preventDefault();
 });
