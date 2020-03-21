@@ -5,6 +5,7 @@ sock.on('msg', onMessage);
 sock.on('usrname', onRegisterUser);
 sock.on('usrchips', onChipsUpdate);
 sock.on('playersshuffle', onPlayersShuffle);
+sock.on('hand', onHandDealt);
 
 function onMessage(text) {
   var list = document.getElementById('chat');
@@ -23,6 +24,7 @@ function onRegisterUser(text) {
 }
 
 function onChipsUpdate(obj) {
+  console.log(obj);
   var usr = obj['user'] + user_suffix;
   var el = document.getElementById(usr);
   el.innerHTML = obj['user'] + ' (' + obj['chips'] + ')';
@@ -48,6 +50,11 @@ function onPlayersShuffle(players) {
     el.innerHTML = players[i];
     list.appendChild(el);
   }
+}
+
+function onHandDealt(hand) {
+  var par = document.getElementById('current-hand');
+  par.innerHTML = hand;
 }
 
 var form = document.getElementById('chat-form');
@@ -103,5 +110,17 @@ btn.addEventListener('click', function(e) {
   sock.emit('playersshuffle', "t");
 
   // prevent refresh
-  //e.preventDefault();
+  e.preventDefault();
+});
+
+var btn = document.getElementById('deal-hand-btn');
+btn.addEventListener('click', function(e) {
+  // todo: move identification of player/user to server
+  // todo: move msg printing to server
+  var usr = document.getElementById('name-input').value;
+  sock.emit('msg', "PLAYER Y dealing hand number XXX");
+  sock.emit('deal', "t");
+
+  // prevent refresh
+  e.preventDefault();
 });
