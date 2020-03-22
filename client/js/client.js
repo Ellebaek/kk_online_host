@@ -15,12 +15,12 @@ function onMessage(text) {
 }
 
 function onRegisterUser(text) {
-  var list = document.getElementById('users');
-  var el = document.createElement('li');
-  el.innerHTML = text;
+  //var list = document.getElementById('users');
+  //var el = document.createElement('li');
+  //el.innerHTML = text;
   // consider stripping username for special characters
-  el.id = text + user_suffix;
-  list.appendChild(el);
+  //el.id = text + user_suffix;
+  //list.appendChild(el);
 }
 
 function onChipsUpdate(obj) {
